@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-
+import Nav from "@components/Nav";
 export const metadata = {
   title: "mindshare",
   description: "Discover AI Prompts",
@@ -12,8 +12,11 @@ function RootLayout({ children }) {
         <div className="main">
           <div className="gradient" />
         </div>
+        <main className="app">
+          <Nav />
 
-        <main className="app">{children}</main>
+          {children}
+        </main>
       </body>
     </html>
   );
