@@ -6,17 +6,17 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 function Nav() {
-  const isLoggedIn = true;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDown, setToggleDown] = useState(false);
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
       setProviders(response);
     };
 
-    setProviders();
+    setUpProviders();
   }, []);
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -30,7 +30,7 @@ function Nav() {
         <p className="logo_text">MINDSHARE</p>
       </Link>
       <div className="sm:flex hidden">
-        {isLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="./crete-prompt" className="black_btn ">
               Create Post
@@ -65,7 +65,7 @@ function Nav() {
       </div>
 
       <div className="sm:hidden flex relative">
-        {isLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src="./assets/icons/menu.svg"
