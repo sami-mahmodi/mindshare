@@ -98,7 +98,7 @@ function Nav() {
                     signOut();
                   }}
                 >
-                  Sign Out{" "}
+                  Sign Out
                 </button>
               </div>
             )}
